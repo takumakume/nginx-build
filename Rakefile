@@ -2,11 +2,11 @@ require 'rake'
 require 'yaml'
 
 def master_docker_compose_yml
-  YAML.load(`git show master:docker-compose.yml`)
+  YAML.load(`git show master:docker-compose.yml`) || {}
 end
 
 def future_docker_compose_yml
-  YAML.load(`cat docker-compose.yml`)
+  YAML.load(`cat docker-compose.yml`) || {}
 end
 
 def changed_roles
