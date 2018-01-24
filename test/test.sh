@@ -48,6 +48,7 @@ function test_version() {
 function run_test() {
   self=$(cd $(dirname $0) && pwd)/$(basename $0)
   tests="$(grep "^function test_" $self | sed -E "s/function (.*)\(\) \{/\1/g")"
+  [[ -f "roles/${ROLE_NAME}/test.sh" ]] && tests="${tests} $(grep "^function test_" roles/${ROLE_NAME}/test.sh | sed -E "s/function (.*)\(\) \{/\1/g")"
   for t in $(echo $tests); do
     $t
   done
